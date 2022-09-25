@@ -1,0 +1,36 @@
+.chat-box {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages-list {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  overflow: auto;
+  background-color: #e5f3f6;
+}
+
+.message-input {
+  display: flex;
+  background-color: #fafbff;
+}
+
+.message-input input {
+  width: 80%;
+  height: 2.5rem;
+  padding: 1rem;
+  border: none;
+  background-color: inherit;
+  border-right: 1px solid #a4d2cf;
+  /* border-bottom-left-radius: 15px; */
+}
+
+.message-input button {
+  width: 20%;
+  border: none;
+  background-color: inherit;
+  /* border-bottom-right-radius: 15px; */
+}
