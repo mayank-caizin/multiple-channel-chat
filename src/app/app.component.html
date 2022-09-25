@@ -1,12 +1,14 @@
 <div class="container">
   <div class="sign-in">
-    <input type="text">
-    <button>Sign in</button>
+    <input type="text" [(ngModel)]="newUser">
+    <button (click)="logInUser()">Log in</button>
   </div>
 
   <div class="users-container">
     <mcr-user></mcr-user>
-    <mcr-user></mcr-user>
-    <!-- <mcr-user></mcr-user> -->
+
+    <div *ngFor="let user of users" trackBy="trackUser">
+      <mcr-user [user]="user"></mcr-user>
+    </div>
   </div>
 </div>
