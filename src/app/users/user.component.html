@@ -1,19 +1,20 @@
 <div class="user-container">
   <div class="user-header">
     <h2>{{ user.name }}</h2>
-    <button>X</button>
+    <button (click)="logOut()">X</button>
   </div>
 
   <div class="user-body">
     <div class="channels-container">
       <div class="channel-create">
-        <input type="text" placeholder="#channel-name">
-        <button>&plus;</button>
+        <input type="text" placeholder="#channel-name" [(ngModel)]= "newChannel">
+        <button (click)="joinChannel()">&plus;</button>
       </div>
 
       <div class="channels-list">
-        <p>#general</p>
-        <p>#math</p>
+        <div *ngFor="let channel of myChannels">
+          <p>{{'#' + channel.name}}</p>
+        </div>
       </div>
 
     </div>

@@ -15,5 +15,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* justify-content: space-evenly; */
+}
+
+.users-container div {
+  width: 50%;
+  height: 100%;
+  min-width: 640px;
 }

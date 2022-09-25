@@ -1,8 +1,13 @@
-.user-container {
+/* :host {
   width: 50%;
-  min-width: 640px;
+  height: 100%;
+} */
+
+.user-container {
+  /* width: 50%; */
+  /* min-width: 640px; */
   padding: 10px;
-  height: 95%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }

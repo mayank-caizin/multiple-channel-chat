@@ -16,27 +16,27 @@ export class AppComponent {
     this._newUser = value;
   }
 
-  users: User[] = [];
+  users: User[];
 
-  constructor(private appService: AppService) {}
-
-  logInUser() {
-    let user: User = this.appService.users.find(user => user.name === this.newUser) ?? this.createUser();
-
-    this.users.push(user);
-    this.newUser = '';
+  constructor(private appService: AppService) {
+    this.users = this.appService.getUsers();
   }
 
-  createUser() {
-    let user: User = {
-      id: Math.random(),
-      name: this.newUser
-    }
-    this.appService.users.push(user);
-    return user;
+  logInUser() {
+    if(!this.newUser) return;
+
+    this.appService.getUser(this.newUser);
+
+    // let user: User = this.appService.getUser(this.newUser);
+    // this.users.push(user);
+    this.newUser = '';
   }
 
   trackUser(index: number, user: User) {
     return user.id;
+  }
+
+  logOutUser(id: number) {
+    this.users = this.users.filter(user => user.id !== id);
   }
 }
