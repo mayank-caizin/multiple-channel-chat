@@ -12,7 +12,8 @@ import { UserService } from '../shared/user.service';
 export class UserComponent implements OnInit {
   @Input() user!: User;
   @Output() logout: EventEmitter<number> = new EventEmitter<number>();
-  myChannels: Channel[];
+  myChannels: Channel[] = [];
+  currentChannel!: Channel;
 
   private _newChannel = '';
   get newChannel(): string {
@@ -22,11 +23,11 @@ export class UserComponent implements OnInit {
     this._newChannel = value;
   }
 
-  constructor(private userService: UserService) {
-    this.myChannels = this.userService.getAllChannels();
-  }
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
+    this.myChannels = this.userService.getAllChannels();
+    this.currentChannel = this.myChannels[0];
   }
 
   joinChannel() {
@@ -37,6 +38,10 @@ export class UserComponent implements OnInit {
     // let channel = this.userService.joinChannel(this._newChannel, this.user.id);
     // this.myChannels.push(channel);
     this.newChannel = '';
+  }
+
+  selectChannel(channel: Channel) {
+    this.currentChannel = channel;
   }
 
   logOut() {

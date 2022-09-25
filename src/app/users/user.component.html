@@ -13,14 +13,14 @@
 
       <div class="channels-list">
         <div *ngFor="let channel of myChannels">
-          <p>{{'#' + channel.name}}</p>
+          <p (click)="selectChannel(channel)">{{'#' + channel.name}}</p>
         </div>
       </div>
 
     </div>
 
     <div class="chat-container">
-      <mcr-chat></mcr-chat>
+      <mcr-chat [user]="user" [channel] = "currentChannel"></mcr-chat>
     </div>
   </div>
 </div>

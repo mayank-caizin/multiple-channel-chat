@@ -1,6 +1,6 @@
-<div class="chat-box">
+<div *ngIf="isMember; else elseBlock" class="chat-box">
   <div class="messages-list">
-    <p>Dummy Msg</p>
+    <p>{{channel.name}}</p>
   </div>
 
   <div class="message-input">
@@ -8,3 +8,10 @@
     <button>Send</button>
   </div>
 </div>
+
+<ng-template #elseBlock>
+  <div class="join-chat">
+    <h2>Please join the channel!!!</h2>
+    <button (click)="joinChannel()">Join</button>
+  </div>
+</ng-template>
