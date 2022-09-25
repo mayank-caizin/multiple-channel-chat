@@ -1,11 +1,16 @@
 <div *ngIf="isMember; else elseBlock" class="chat-box">
+  <div class="chat-header">
+    <h2>{{'#' + channel.name}}</h2>
+  </div>
   <div class="messages-list">
-    <p>{{channel.name}}</p>
+    <div *ngFor="let message of myMessages">
+      <p>{{ message.body.content }}</p>
+    </div>
   </div>
 
   <div class="message-input">
-    <input type="text" placeholder="Type here...">
-    <button>Send</button>
+    <input type="text" placeholder="Type here..." [(ngModel)]="newMessage">
+    <button (click)="sendMessage()">Send</button>
   </div>
 </div>
 

@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Channel } from '../models/channel';
+import { Message, MessageBody } from '../models/message';
 import { User } from '../models/user';
 import { UserService } from '../shared/user.service';
 
@@ -12,6 +13,15 @@ export class ChatComponent implements OnInit, OnChanges {
   @Input() channel!: Channel;
   @Input() user!: User;
   isMember: boolean = false;
+  myMessages: Message[] = [];
+
+  private _newMessage = '';
+  get newMessage(): string {
+    return this._newMessage;
+  }
+  set newMessage(value: string) {
+    this._newMessage = value;
+  }
 
   constructor(private userService: UserService) {}
 
@@ -32,7 +42,10 @@ export class ChatComponent implements OnInit, OnChanges {
       if(userId === this.user.id)
         found = true;
     })
-    if(found) this.isMember = true;
+    if(found) {
+      this.isMember = true;
+      this.myMessages = this.userService.getMyMessages(this.channel.name, this.user.id);
+    }
     else this.isMember = false;
   }
 
@@ -41,4 +54,11 @@ export class ChatComponent implements OnInit, OnChanges {
     this.isMember = true;
   }
 
+  sendMessage() {
+    if(!this.newMessage) return;
+
+    this.userService.sendMessage(this.user.id, this.newMessage, this.channel.name);
+
+    this.newMessage = '';
+  }
 }

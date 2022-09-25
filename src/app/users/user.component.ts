@@ -33,9 +33,10 @@ export class UserComponent implements OnInit {
   joinChannel() {
     if(!this.newChannel) return;
 
-    this.userService.joinChannel(this._newChannel, this.user.id);
+    let channel = this.userService.joinChannel(this._newChannel, this.user.id);
 
-    // let channel = this.userService.joinChannel(this._newChannel, this.user.id);
+    this.currentChannel = channel;
+
     // this.myChannels.push(channel);
     this.newChannel = '';
   }

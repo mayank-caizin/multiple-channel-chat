@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Channel } from '../models/channel';
-import { Message } from '../models/message';
+import { Message, MessageBody } from '../models/message';
 import { User } from '../models/user';
 
 @Injectable({
@@ -30,6 +31,10 @@ export class AppService {
 
   getChannels() {
     return this.channels;
+  }
+
+  getMessages() {
+    return this.messages;
   }
 
   getUser(name: string) {
@@ -72,5 +77,19 @@ export class AppService {
       channel = this.channels[index];
     }
     return channel;
+  }
+
+  // Messages section
+  messageSubject = new Subject<Message>();
+  message$ = this.messageSubject.asObservable();
+
+  broadcastMessage(messageBody: MessageBody) {
+    let message = {
+      id: Math.random(),
+      time: new Date(),
+      body: messageBody
+    }
+    this.messages.push(message);
+    this.messageSubject.next(message);
   }
 }

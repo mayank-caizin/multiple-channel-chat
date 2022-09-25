@@ -4,6 +4,12 @@
   flex-direction: column;
 }
 
+.chat-header {
+  color: #8f9094;
+  background-color: #c8e7e9;
+  padding: 0 10px;
+}
+
 .join-chat {
   height: 100%;
   display: flex;
