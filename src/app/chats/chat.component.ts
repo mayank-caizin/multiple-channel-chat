@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { filter, Subscription } from 'rxjs';
 import { Channel } from '../models/channel';
-import { Message, MessageBody } from '../models/message';
+import { Message } from '../models/message';
 import { User } from '../models/user';
 import { UserService } from '../shared/user.service';
 
@@ -14,6 +15,7 @@ export class ChatComponent implements OnInit, OnChanges {
   @Input() user!: User;
   isMember: boolean = false;
   myMessages: Message[] = [];
+  sub!: Subscription;
 
   private _newMessage = '';
   get newMessage(): string {
@@ -26,13 +28,9 @@ export class ChatComponent implements OnInit, OnChanges {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    let found = false;
-    this.channel.users.map(userId => {
-      if(userId === this.user.id)
-        found = true;
-    })
-    if(found) this.isMember = true;
-    else this.isMember = false;
+    this.sub = this.userService.message$
+                .pipe(filter(message => message.body.channel === this.channel.name))
+                .subscribe(message => this.receiveMessage(message));
   }
 
   ngOnChanges() {
@@ -44,14 +42,19 @@ export class ChatComponent implements OnInit, OnChanges {
     })
     if(found) {
       this.isMember = true;
-      this.myMessages = this.userService.getMyMessages(this.channel.name, this.user.id);
+      this.initializeChat();
     }
     else this.isMember = false;
+  }
+
+  initializeChat() {
+    this.myMessages = this.userService.getMyMessages(this.channel.name, this.user.id);
   }
 
   joinChannel() {
     this.userService.joinChannel(this.channel.name, this.user.id);
     this.isMember = true;
+    this.initializeChat();
   }
 
   sendMessage() {
@@ -60,5 +63,9 @@ export class ChatComponent implements OnInit, OnChanges {
     this.userService.sendMessage(this.user.id, this.newMessage, this.channel.name);
 
     this.newMessage = '';
+  }
+
+  receiveMessage(message: Message) {
+    this.myMessages.push(message);
   }
 }

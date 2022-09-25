@@ -4,8 +4,8 @@
 } */
 
 .user-container {
-  /* width: 50%; */
-  /* min-width: 640px; */
+  width: 50%;
+  min-width: 630px;
   padding: 10px;
   height: 100%;
   display: flex;
@@ -31,7 +31,8 @@
 
 .user-body {
   display: flex;
-  flex-grow: 1;
+  /* flex-grow: 1; */
+  height: 430px;
 }
 
 .channels-container {

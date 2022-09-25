@@ -6,12 +6,18 @@ import { AppComponent } from './app.component';
 import { UserComponent } from './users/user.component';
 import { ChatComponent } from './chats/chat.component';
 import { FormsModule } from '@angular/forms';
+import { MessageComponent } from './messages/message.component';
+import { ConvertTimeToStringPipe } from './shared/convert-time-to-string.pipe';
+import { GetUserNamePipe } from './shared/get-user-name.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    ChatComponent
+    ChatComponent,
+    MessageComponent,
+    ConvertTimeToStringPipe,
+    GetUserNamePipe
   ],
   imports: [
     BrowserModule,

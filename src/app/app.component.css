@@ -11,14 +11,14 @@
 
 .users-container {
   width: 100%;
-  flex-grow: 1;
+  /* flex-grow: 1; */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.users-container div {
+/* .users-container div {
   width: 50%;
   height: 100%;
   min-width: 640px;
-}
+} */

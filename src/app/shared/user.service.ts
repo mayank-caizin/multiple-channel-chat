@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
-import { MessageBody } from '../models/message';
+import { Observable } from 'rxjs';
+import { Message, MessageBody } from '../models/message';
 import { AppService } from './app.service';
 
 @Injectable()
 export class UserService {
+  message$: Observable<Message>;
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService) {
+    this.message$ = appService.message$;
+  }
 
   getAllChannels() {
     return this.appService.getChannels();

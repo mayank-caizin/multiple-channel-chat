@@ -4,7 +4,7 @@
   </div>
   <div class="messages-list">
     <div *ngFor="let message of myMessages">
-      <p>{{ message.body.content }}</p>
+      <mcr-message [message]="message"></mcr-message>
     </div>
   </div>
 

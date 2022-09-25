@@ -26,10 +26,10 @@
 
 .messages-list {
   flex-grow: 1;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  overflow: auto;
   background-color: #e5f3f6;
 }
 
