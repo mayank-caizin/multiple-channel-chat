@@ -28,6 +28,7 @@ export class AppComponent implements OnInit{
     if(!this.newUser) return;
 
     this.appService.getUser(this.newUser);
+    this.users = this.appService.getUsers();
 
     // let user: User = this.appService.getUser(this.newUser);
     // this.users.push(user);

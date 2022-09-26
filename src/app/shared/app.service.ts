@@ -13,10 +13,12 @@ export class AppService {
   messages: Message[];
 
   constructor() {
-    this.users = [ {
-      id: 0,
-      name: "John"
-    } ];
+    // default user
+    // this.users = [ {
+    //   id: 0,
+    //   name: "John"
+    // } ];
+    this.users = [];
     this.channels = [ {
       name: "general",
       admin: 0,
@@ -39,7 +41,7 @@ export class AppService {
 
   getUser(name: string) {
     let user: User = this.users.find(user => user.name === name) ?? this.createUser(name);
-
+    console.log(user);
     return user;
   }
 
