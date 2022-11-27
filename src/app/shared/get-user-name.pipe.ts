@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { AppService } from './app.service';
 
 @Pipe({
-  name: 'getUserName'
+  name: 'getUserName',
+  pure: false
 })
 export class GetUserNamePipe implements PipeTransform {
 

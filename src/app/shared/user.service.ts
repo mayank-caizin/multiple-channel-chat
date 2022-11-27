@@ -11,6 +11,10 @@ export class UserService {
     this.message$ = appService.message$;
   }
 
+  updateName(userId: number, newName: string) {
+    this.appService.updateName(userId, newName);
+  }
+
   getAllChannels() {
     return this.appService.getChannels();
   }

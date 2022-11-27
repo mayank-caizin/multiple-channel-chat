@@ -1,3 +1,4 @@
+import { AppService } from './app.service';
 import { GetUserNamePipe } from './get-user-name.pipe';
 
 describe('GetUserNamePipe', () => {

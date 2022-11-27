@@ -27,6 +27,11 @@ export class AppService {
     this.messages = [];
   }
 
+  updateName(userId: number, newName: string) {
+    let index = this.users.findIndex(user => userId == user.id);
+    this.users[index].name = newName;
+  }
+
   getUsers() {
     return this.users;
   }

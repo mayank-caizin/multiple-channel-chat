@@ -1,6 +1,8 @@
 <div class="user-container">
   <div class="user-header">
     <h2>{{ user.name }}</h2>
+    <input type="text" [(ngModel)]="newName">
+    <button (click)="updateName()">Update</button>
     <button (click)="logOut()">X</button>
   </div>
 

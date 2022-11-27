@@ -23,11 +23,24 @@ export class UserComponent implements OnInit {
     this._newChannel = value;
   }
 
+  private _newName = '';
+  get newName(): string {
+    return this._newName;
+  }
+  set newName(value: string) {
+    this._newName = value;
+  }
+
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.myChannels = this.userService.getAllChannels();
     this.currentChannel = this.myChannels[0];
+  }
+
+  updateName() {
+    this.userService.updateName(this.user.id, this.newName);
+    this.newName = '';
   }
 
   joinChannel() {
